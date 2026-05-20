@@ -1,0 +1,1 @@
+A .yml file in Docker is used to define and manage multiple containers, services, networks, ports, and configurations together using Docker Compose.
