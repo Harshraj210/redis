@@ -1,0 +1,13 @@
+services:
+# Defines all containers/services for this project
+
+  redis:
+    image: redis:7-alpine
+    container_name: harsh-code
+    ports:
+      -"6379:6379"
+      # Redis can save data to disk bcz if container crashes data may disapper
+    command: ["redis-server","--appendonly","yes"]
+    # Store data outside container -->volumes
+    volumes:
+      -redis-data:/data
