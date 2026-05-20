@@ -1,13 +1,29 @@
+version: "3.8"
+
 services:
-# Defines all containers/services for this project
+  # Defines all containers/services for this project
 
   redis:
     image: redis:7-alpine
     container_name: harsh-code
     ports:
-      -"6379:6379"
-      # Redis can save data to disk bcz if container crashes data may disapper
-    command: ["redis-server","--appendonly","yes"]
-    # Store data outside container -->volumes
+      - "6379:6379"
+    # Redis can save data to disk because if container crashes data may disappear
+    command: ["redis-server", "--appendonly", "yes"]
+    # Store data outside container --> volumes
     volumes:
-      -redis-data:/data
+      - redis-data:/data
+
+  mongo:
+    image: mongo:7
+    container_name: harsh_mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: "HARSH_AUR_REDIS"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  redis-data:
+  mongo-data:
