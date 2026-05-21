@@ -10,3 +10,12 @@ app.post("/banner", async (req, res) => {
   await redis.set(BANNER_KEY, req.body.message || "welcome to redis");
   res.json({ success: true });
 });
+app.get("/banner", async (req, res) => {
+  await redis.set(BANNER_KEY);
+  res.json({ message });
+});
+app.delete("/banner", async (req, res) => {
+  await redis.del(BANNER_KEY);
+  res.json({ message });
+});
+
